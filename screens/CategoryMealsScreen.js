@@ -1,10 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
+import { CATEGORIES } from '../data/dummy-data';
+
 const CategoriesMealsScreen = props => {
+  //to extract the category id which is passed from categories screen
+  const catId = props.navigation.getParam('categoryId');
+
+  const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
   return (
     <View style={styles.screen}>
       <Text>the CategoriesMealsScreen </Text>
+      <Text>{selectedCategory.title}</Text>
       <Button
         title='go to mealdetail'
         onPress={() => {

@@ -16,7 +16,13 @@ const CategoriesScreen = props => {
     return (
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate({ routeName: 'CategoryMeals' });
+          //params is used to pass data from this screen to next screen
+          props.navigation.navigate({
+            routeName: 'CategoryMeals',
+            params: {
+              categoryId: itemData.item.id
+            }
+          });
         }}
         style={styles.gridItem}
       >
