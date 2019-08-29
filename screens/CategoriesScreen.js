@@ -4,18 +4,18 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  TouchableOpacity,
-  Platform
+  TouchableOpacity
 } from 'react-native';
 
 import { CATEGORIES } from '../data/dummy-data';
-import Colors from '../constants/Colors';
+import CategoryGridTile from '../components/CategoryGridTile';
 
 const CategoriesScreen = props => {
   const renderGridItem = itemData => {
     return (
-      <TouchableOpacity
-        onPress={() => {
+      <CategoryGridTile
+        title={itemData.item.title}
+        onSelect={() => {
           //params is used to pass data from this screen to next screen
           props.navigation.navigate({
             routeName: 'CategoryMeals',
@@ -24,12 +24,8 @@ const CategoriesScreen = props => {
             }
           });
         }}
-        style={styles.gridItem}
-      >
-        <View>
-          <Text>{itemData.item.title}</Text>
-        </View>
-      </TouchableOpacity>
+        color={itemData.item.color}
+      />
     );
   };
 
@@ -44,24 +40,15 @@ const CategoriesScreen = props => {
 };
 
 //to configure the header that react navigation gives us
-CategoriesScreen.navigationOptions = {
-  headerTitle: 'Meal Categories',
-  headerStyle: {
-    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
-  },
-  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
-};
+// CategoriesScreen.navigationOptions = {
+//   headerTitle: 'Meal Categories'
+// };
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  gridItem: {
-    flex: 1,
-    margin: 15,
-    height: 150
   }
 });
 
