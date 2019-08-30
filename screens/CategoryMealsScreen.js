@@ -2,13 +2,19 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 import { CATEGORIES, MEALS } from '../data/dummy-data';
+import MealItem from '../components/MealItem';
 
 const CategoriesMealsScreen = props => {
   const renderMealItem = itemdata => {
     return (
-      <View>
-        <Text>{itemdata.item.title}</Text>
-      </View>
+      <MealItem
+        title={itemdata.item.title}
+        onSelectMeal={() => {}}
+        duration={itemdata.item.duration}
+        complexity={itemdata.item.complexity}
+        affordability={itemdata.item.affordability}
+        image={itemdata.item.imageUrl}
+      />
     );
   };
   //to extract the category id which is passed from categories screen
@@ -23,6 +29,7 @@ const CategoriesMealsScreen = props => {
         keyExtractor={(item, index) => item.id}
         data={displayedMeals}
         renderItem={renderMealItem}
+        style={{ width: '100%' }}
       />
     </View>
   );
